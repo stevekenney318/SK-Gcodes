@@ -2,7 +2,7 @@
 ; # This will run G34 to align Z stepper motors
 ; # https://marlinfw.org/docs/gcode/G034-zsaa.html
 ; ###################################################################
-; -- Last Revision: 20230723-1
+; -- https://github.com/stevekenney318/SK-Gcodes
 ; -- Original: 20230628
 ; -- Steve Kenney
 ; ###################################################################
