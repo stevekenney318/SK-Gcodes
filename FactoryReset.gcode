@@ -1,11 +1,17 @@
-; ###################################################################
-; # CAUTION - this file will reset your printer to Factory Settings #
-; ###################################################################
-; -- Last Revision: 20230619-1
-; -- Original: 20230619
-; -- Steve Kenney
-; ###################################################################
-; ###################################################################
+; ######################################################################################
+; # CAUTION - this file will reset all configurable settings to their factory defaults #
+; ######################################################################################
+; 
+; Factory Reset Code
+; Version: 23.01
+; 
+; Original: 20230619
+;
+; https://github.com/stevekenney318/SK-Gcodes
+;
+; ######################################################################################
+; # CAUTION - this file will reset all configurable settings to their factory defaults #
+; ######################################################################################
 ;
 G4 S56 ; wait for 1 minute to give oppurtuniy to CANCEL factory reset
 M117 ... Waiting 1 minute before FACTORY RESET

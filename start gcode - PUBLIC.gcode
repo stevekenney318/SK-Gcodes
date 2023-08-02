@@ -1,5 +1,5 @@
 ; PrusaSlicer Start Code -- Verified for Mingda Magician X, X2 & Max. Should also work on Pro. 
-; Version: SK.23.001
+; Version: Public.23.001
 ; 2023-08-02 09:26:52
 ; (control shift i to insert date & time)
 ; Original: 12/16/21
@@ -50,8 +50,8 @@ M300 P56 S523
 M300 P56 S587
 
 ; Disable filament runout detection
-M412 S0 ; Disable filament runout detection
-M500 ; Save settings
+; M412 S0 ; Disable filament runout detection
+; M500 ; Save settings
 
 ; printing settings
 G21 ; set units to millimeters
