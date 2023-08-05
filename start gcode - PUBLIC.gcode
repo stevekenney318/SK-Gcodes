@@ -1,6 +1,6 @@
 ; PrusaSlicer Start Code -- Verified for Mingda Magician X, X2 & Max. Should also work on Pro. 
-; Version: Public.23.001
-; 2023-08-02 09:26:52
+; Version: Public.23.002
+; 2023-08-03 01:11:05
 ; (control shift i to insert date & time)
 ; Original: 12/16/21
 ;
@@ -174,6 +174,11 @@ M300 S1000 P4 ; alert carriage move
 ; Start Purge line
 ; ####################################################
 ;
+; SELECT ONE (Right or Left)
+; Comment out other side
+
+; Right side
+;
 M117 Purge line on the right Side of Bed
 G92 E0 ; Reset Extruder
 G1 X{print_bed_max[0] - 3} Y205 Z0.3 F5000  ; Move to start position
@@ -181,6 +186,21 @@ G91 ; use relative coordinates
 G1 Y-180 F1500 E15 ; Draw 1st line
 G0 Z0.1 ; move up a little
 G1 Y180 F1500 E30 ; Draw the 2nd line
+
+;*****
+; OR *
+;*****
+
+; Left side
+;
+; M117 Purge line on the left Side of Bed
+; G92 E0 ; reset extruder
+; G1 Z1.0 F3000 ; move z up little to prevent scratching of surface
+; G1 X2 Y20 Z0.3 F5000.0 ; move to start-line position
+; G1 X2 Y200.0 Z0.3 F1500.0 E15 ; draw 1st line
+; G1 X2 Y200.0 Z0.4 F5000.0 ; move to side a little
+; G1 X2 Y20 Z0.4 F1500.0 E30 ; draw 2nd line
+
 ;
 ; ####################################################
 ; End Purge line
