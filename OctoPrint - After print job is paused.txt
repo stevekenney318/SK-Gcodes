@@ -1,0 +1,39 @@
+; ##########################################################
+; OctoPrint - After print job is paused
+; ##########################################################
+; adapted from - https://docs.octoprint.org/en/master/features/gcode_scripts.html#more-nifty-pause-and-resume
+; ##########################################################
+;
+; Printing paused - notify with beeps
+M117 Printing is pausing
+M300 P56 S698
+M300 P56 S523
+M300 P56 S698
+M300 P56 S784
+M300 P56 S880
+M300 P56 S932
+M300 P56 S466
+M300 P56 S880
+M300 P56 S587
+M300 P56 S622
+
+
+{% if pause_position.x is not none %}
+; relative XYZE
+G91 ; use relative coordinates
+M83 ; use relative distances for extrusion
+;
+; retract filament, move Z slightly upwards
+G1 Z+30 E- F2400
+;
+; absolute XYZE
+M82 ; use absolute distances for extrusion
+G90 ; use absolute coordinates
+;
+; move to a safe rest position, adjust as necessary
+G1 X120 Y0
+M117 Printing is paused
+{% endif %}
+; ##########################################################
+; OctoPrint - Routine - End
+; ##########################################################

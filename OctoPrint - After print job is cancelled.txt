@@ -1,0 +1,32 @@
+; ##########################################################
+; OctoPrint - After print job is cancelled
+; ##########################################################
+
+; Print CANCELLED Tones
+M300 S200 P500
+M300 S200 P500
+M300 S200 P500
+
+G92 E0
+
+G91 ; use relative coordinates
+G0 Z0.5 F5000 ; move up relative Z
+G90 ; use absolute coordinates
+
+
+
+M106 S0 ; turn off cooling fan
+M104 S0 ; turn off extruder
+M140 S0 ; turn off bed
+M84 ; disable motors
+
+M117 Print Completed
+
+; Print CANCELLED Tones
+M300 S200 P500
+M300 S200 P500
+M300 S200 P500
+
+; ##########################################################
+; OctoPrint - Routine - End
+; ##########################################################

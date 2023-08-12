@@ -1,0 +1,45 @@
+; ##########################################################
+; OctoPrint - Before print job is resumed
+; ##########################################################
+; adapted from - https://docs.octoprint.org/en/master/features/gcode_scripts.html#more-nifty-pause-and-resume
+; ##########################################################
+
+;
+{% if pause_position.x is not none %}
+; relative extruder
+M83 ; use relative distances for extrusion
+;
+G1 E-.5 F2400 ; retract
+;
+; absolute E
+M82 ; use absolute distances for extrusion
+;
+; absolute XYZ
+G90 ; use absolute coordinates
+;
+; reset E
+G92 E{{ pause_position.e }}
+;
+; move back to pause position XYZ
+G1 X{{ pause_position.x }} Y{{ pause_position.y }} Z{{ pause_position.z }} F4500
+;
+G1 E.5 F2400 ;  ; unretract
+;
+; reset to feed rate before pause if available
+{% if pause_position.f is not none %}G1 F{{ pause_position.f }}{% endif %}
+; re enable filament runout detection
+M412 S1
+M108 ;send resume
+{% endif %}
+;
+; ##########################################################
+; -- Steve Kenney 11/18/22
+; -- The following is required for Mingda Magician Series
+; ##########################################################
+
+G21 ; set units to millimeters
+G90 ; use absolute coordinates
+M83 ; use relative distances for extrusion
+; ##########################################################
+; OctoPrint - Routine - End
+; ##########################################################
