@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OctoPrint-DisplayLayerProgress</title>
+</head>
+<body>
+    <hr> <!-- Solid separating line -->
+    <span title='Shows the height information'>Current Height</span>: <strong id='state_height_message'>[current_height] / [total_height]mm</strong>
+    <br>
+    <span title='Shows the layer information'>Layer</span>: <strong id='state_layer_message'>[current_layer] / [total_layers]</strong>
+    <br>
+    <span title='Shows the print time'>ETA:</span>: <strong id='state_ETA_message'>[estimated_end_time], [printtime_left]</strong>
+    <hr> <!-- Solid separating line -->
+<p>The current time is: <time id="currentTime" datetime=""></time></p>
+<script>
+  function updateTime() {
+    var now = new Date();
+    var timeElement = document.getElementById('currentTime');
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var timeString = hours + ':' + minutes + ' ' + ampm;
+    timeElement.textContent = timeString;
+    timeElement.setAttribute('datetime', now.toISOString());
+    if (seconds === 0) {
+      // If seconds reach 00, update the time immediately and then update every minute
+      updateNextMinute();
+      setInterval(updateNextMinute, 60000);
+    }
+  }
+
+  function updateNextMinute() {
+    var now = new Date();
+    var secondsUntilNextMinute = 60 - now.getSeconds();
+    setTimeout(updateTime, secondsUntilNextMinute * 1000);
+  }
+
+  // Update the time initially
+  updateTime();
+</script>
+</body>
+</html>
