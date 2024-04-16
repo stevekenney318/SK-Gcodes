@@ -29,9 +29,8 @@
     timeElement.textContent = timeString;
     timeElement.setAttribute('datetime', now.toISOString());
     if (seconds === 0) {
-      // If seconds reach 00, update the time immediately and then update every minute
+      // If seconds reach 00, update the time immediately
       updateNextMinute();
-      setInterval(updateNextMinute, 60000);
     }
   }
 
@@ -43,6 +42,9 @@
 
   // Update the time initially
   updateTime();
+
+  // Update the time when the seconds reach 00
+  setInterval(updateNextMinute, 1000);
 </script>
 </body>
 </html>
